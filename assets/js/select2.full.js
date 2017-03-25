@@ -4116,7 +4116,15 @@ S2.define('select2/dropdown/attachBody',[
   '../utils'
 ], function ($, Utils) {
   function AttachBody (decorated, $element, options) {
-    this.$dropdownParent = options.get('dropdownParent') || $(document.body);
+    if (options.get('dropdownParent') === undefined || options.get('dropdownParent') === null) {
+      this.$dropdownParent = $(document.body);
+    } else if (typeof options.get('dropdownParent') === 'string' || options.get('dropdownParent') instanceof String) {
+      this.$dropdownParent = $(options.get('dropdownParent'));
+    } else if (options.get('dropdownParent') instanceof jQuery) {
+      this.$dropdownParent = options.get('dropdownParent');
+    } else {
+      throw new Error('Incorrect option for dropdownParent')
+    }
 
     decorated.call(this, $element, options);
   }
