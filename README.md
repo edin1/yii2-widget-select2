@@ -1,7 +1,42 @@
 yii2-widget-select2
 ===================
 
-> NOTE: This fork exists only to allow yii2-widget-select2 to work with modals. The fix hacks select2 javascript to allow dropdownParent to be passed down from PHP to select2 javascript with pluginOptions as a string. Unfortunately, the only official "fix" for yii2-widget-select and modals is mentioned here https://github.com/kartik-v/yii2-widget-select2/issues/41 (they don't even mention dropdownParent!), but that is non-optimal, as it breaks normal browser functionality. Anyway, the problem with the javascript code is that select2 expects an actual jQuery object to be passed as dropdownParent, while this fork allows a string selector to be passed. Some more links that describe the problem are https://github.com/select2/select2/issues/4217#issuecomment-189387677 https://github.com/kartik-v/yii2-widget-select2/issues/159 https://github.com/yiisoft/yii2-bootstrap/issues/70
+## edin1's fork notes
+This fork exists only to allow yii2-widget-select2 to work with modals. The fix hacks select2 javascript to allow dropdownParent to be passed down from PHP to select2 javascript with pluginOptions as a string. Unfortunately, the only official "fix" for yii2-widget-select and modals is mentioned here https://github.com/kartik-v/yii2-widget-select2/issues/41 (they don't even mention dropdownParent!), but that is non-optimal, as it breaks normal browser functionality. Anyway, the problem with the javascript code is that select2 expects an actual jQuery object to be passed as dropdownParent, while this fork allows a string selector to be passed. Some more links that describe the problem are https://github.com/select2/select2/issues/4217#issuecomment-189387677 https://github.com/kartik-v/yii2-widget-select2/issues/159 https://github.com/yiisoft/yii2-bootstrap/issues/70
+
+If you want to use this particular fork in your project you have to add the following to your project's composer.json (you don't have to modify the code of the fork!):
+```
+{
+    ...,
+
+    "repositories": [
+        ...,
+
+        {
+            "type": "vcs",
+            "url": "https://github.com/edin1/yii2-widget-select2"
+        },
+
+        ...,
+    ],
+
+    ...,
+}
+```
+
+and also add the following to the "require" section:
+
+```
+"kartik-v/yii2-widget-select2": "dev-dropdownParent-fix"
+```
+
+or run:
+
+```
+$ php composer.phar require kartik-v/yii2-widget-select2 "dev-dropdownParent-fix"
+```
+
+> NOTE: Below are the contents of the original README.md
 
 [![Stable Version](https://poser.pugx.org/kartik-v/yii2-widget-select2/v/stable)](https://packagist.org/packages/kartik-v/yii2-widget-select2)
 [![Unstable Version](https://poser.pugx.org/kartik-v/yii2-widget-select2/v/unstable)](https://packagist.org/packages/kartik-v/yii2-widget-select2)
@@ -21,13 +56,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 To install, either run
 
 ```
-$ php composer.phar require edin1/yii2-widget-select2 "@dev"
+$ php composer.phar require kartik-v/yii2-widget-select2 "@dev"
 ```
 
 or add
 
 ```
-"edin1/yii2-widget-select2": "@dev"
+"kartik-v/yii2-widget-select2": "@dev"
 ```
 
 to the ```require``` section of your `composer.json` file.
